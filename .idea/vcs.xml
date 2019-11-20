@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Alarms" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Finished Homework/FF4TV" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/PhotoSchedule" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SoftCraft" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TxtAnalysis" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/channels" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pictures" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/shortestpaths" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/testexample" vcs="Git" />
+  </component>
+</project>
