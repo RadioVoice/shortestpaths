@@ -8,6 +8,7 @@ public class SimpleNode implements Node{
     private LinkedList<Edge> edges;
     private BigInteger cost;
     private Node previous;
+    private BigInteger costToNode;
 
     private SimpleNode(BigInteger id, LinkedList<Edge> edges, BigInteger cost, Node previous) {
         this.id = id;
@@ -21,8 +22,8 @@ public class SimpleNode implements Node{
         Objects.requireNonNull(edges);
         Objects.requireNonNull(cost);
         Objects.requireNonNull(previous);
+        Objects.requireNonNull(costToNode);
 
-        //Check if edges is empty???
         return new SimpleNode(id, edges, cost, previous);
     }
 
@@ -33,6 +34,8 @@ public class SimpleNode implements Node{
     public BigInteger getCost() { return cost; }
 
     public Node getPrevious() { return previous; }
+
+    public BigInteger getCostToNode() { return costToNode; }
 
     public boolean add(Edge outgoing) {
         Objects.requireNonNull(outgoing);
@@ -51,8 +54,9 @@ public class SimpleNode implements Node{
     public int compareTo(Object o) {
         Objects.requireNonNull(o);
         if(o instanceof Node){
-        return this.getId().compareTo(((Node) o).getId());
+            return this.getId().compareTo(((Node) o).getId());
         }
-        return 0;
+        throw new IllegalArgumentException("Object is not a valid Node");
     }
+
 }
