@@ -11,15 +11,15 @@ public class SimpleEdgeTest {
     //Code Coverage
     @Test
     public void simpleEdgeTest() {
-        SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"), null);
-        SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"), node);
+        SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"));
+        SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"));
 
         SimpleEdge edge = SimpleEdge.of(new BigInteger("1"), new BigInteger("1001"), node, node2);
     }
     //Bad Data - Origin and Dest are the same
     @Test(expected = InvalidParameterException.class)
     public void simpleEdgeTestBadNodes() {
-        SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"), null);
+        SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"));
         SimpleEdge edge = SimpleEdge.of(new BigInteger("1"), new BigInteger("1001"), node, node);
     }
 
