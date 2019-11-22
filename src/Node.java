@@ -6,7 +6,7 @@ public interface Node extends Comparable{
     BigInteger getId();
     HashSet<Edge> getEdges();
     BigInteger getCost();
-    boolean add(Edge outgoing);
-    boolean remove(Edge outgoing);
-
+    boolean addEdge(Edge outgoing);
+    boolean removeEdge(Edge outgoing);
+    boolean equals(Object o);
 }

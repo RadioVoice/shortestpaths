@@ -28,12 +28,12 @@ public class SimpleNode implements Node{
 
     public BigInteger getCost() { return cost; }
 
-    public boolean add(Edge outgoing) {
+    public boolean addEdge(Edge outgoing) {
         Objects.requireNonNull(outgoing);
         return edges.add(outgoing);
     }
 
-    public boolean remove(Edge outgoing) {
+    public boolean removeEdge(Edge outgoing) {
         Objects.requireNonNull(outgoing);
         return edges.remove(outgoing);
     }

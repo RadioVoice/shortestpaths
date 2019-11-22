@@ -38,11 +38,13 @@ public final class RouteFinder {
 
     private void findNextNodes(RouteState routeState, RouteNode currentNode) {
         HashSet<Edge> connectionSet = currentNode.getConnections();
+
         for (Edge connection : connectionSet) {
-            BigInteger costToNextNode = currentNode.getCostToNode().add(connection.getCost());
+            BigInteger costToNextNode = currentNode.costAfterNode().add(connection.getCost());
             RouteNode nextRouteNode = routeState.associatedRouteNode(connection.getDest());
             Objects.requireNonNull(nextRouteNode, "No associated RouteNode");
-            if(nextRouteNode.getCostToNode() == null || costToNextNode.compareTo(nextRouteNode.getCostToNode()) < 0){
+
+            if(!nextRouteNode.isCostToNodeKnown() || costToNextNode.compareTo(nextRouteNode.costAfterNode()) < 0){
                 RouteNode newNode = RouteNode.of(connection, currentNode);
                 routeState.replaceNode(newNode);
             }

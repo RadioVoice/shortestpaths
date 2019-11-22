@@ -47,15 +47,15 @@ public class SimpleNodeTest {
        SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"), node);
 
        SimpleEdge edge = SimpleEdge.of(new BigInteger("1"), new BigInteger("1001"), node, node2);
-       assertTrue(node.add(edge));
-       assertFalse(node.add(edge));
+       assertTrue(node.addEdge(edge));
+       assertFalse(node.addEdge(edge));
     }
 
     //Bad Data - Null edge
     @Test(expected = NullPointerException.class)
     public void simpleNodeAddTestNull() {
         SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"), null);
-        node.add(null);
+        node.addEdge(null);
     }
 
     //Code Coverage and Branch Coverage
@@ -65,16 +65,16 @@ public class SimpleNodeTest {
         SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"), node);
 
         SimpleEdge edge = SimpleEdge.of(new BigInteger("1"), new BigInteger("1001"), node, node2);
-        node.add(edge);
-        assertTrue(node.remove(edge));
-        assertFalse(node.remove(edge));
+        node.addEdge(edge);
+        assertTrue(node.removeEdge(edge));
+        assertFalse(node.removeEdge(edge));
     }
 
     //Bad Data - Null edge
     @Test(expected = NullPointerException.class)
     public void simpleNodeRemoveTestNull() {
         SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"), null);
-        node.remove(null);
+        node.removeEdge(null);
     }
 
     //Bad Data - Illegal Argument
