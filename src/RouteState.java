@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.security.InvalidParameterException;
 import java.util.*;
 
 final class RouteState {
@@ -20,9 +21,9 @@ final class RouteState {
         this.replaceNode(startingNode);
     }
     static RouteState of(Set<Node> nodes, Node origin, BigInteger startingCost){
-        Objects.requireNonNull(nodes, "set is null");
-        Objects.requireNonNull(origin, "origin is null");
-        Objects.requireNonNull(startingCost, "starting cost is null");
+        if(nodes.isEmpty()){
+            throw new InvalidParameterException("Nodes should not be empty");
+        }
         return new RouteState(nodes, origin, startingCost);
     }
 

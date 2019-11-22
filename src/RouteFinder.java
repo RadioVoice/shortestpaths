@@ -1,6 +1,7 @@
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public final class RouteFinder {
@@ -19,7 +20,6 @@ public final class RouteFinder {
         Objects.requireNonNull(origin, "origin is null");
         Objects.requireNonNull(destination, "destination is null");
         Objects.requireNonNull(startingCost, "starting cost is null");
-
         RouteState routeState = RouteState.of(nodes, origin, startingCost);
 
         while (!routeState.allReached()) {
