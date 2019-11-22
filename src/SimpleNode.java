@@ -34,11 +34,11 @@ public class SimpleNode implements Node {
 
     public Node getPrevious() { return previous; }
 
-    private boolean add(Edge outgoing) {
+    public boolean add(Edge outgoing) {
         return edges.add(outgoing);
     }
 
-    private boolean remove(Edge outgoing) {
+    public boolean remove(Edge outgoing) {
         return edges.remove(outgoing);
     }
     public boolean equals(Node o) {
