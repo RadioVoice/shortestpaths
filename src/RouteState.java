@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.HashSet;
 import java.util.NavigableSet;
 import java.util.Set;
@@ -10,6 +11,8 @@ public class RouteState {
     private RouteState(Set<Node> nodes, Node origin){
         nodeSet = new HashSet<Node>();
         unreached = new TreeSet<Node>();
+
+        //SimpleNode firstNode = SimpleNode.of()
 
     }
 }
