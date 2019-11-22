@@ -1,7 +1,7 @@
 import java.math.BigInteger;
 import java.util.LinkedList;
 
-public interface Node {
+public interface Node extends Comparable{
 
     BigInteger getId();
     LinkedList<Edge> getEdges();
