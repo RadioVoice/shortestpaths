@@ -2,7 +2,7 @@ import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.Objects;
 
-public class SimpleNode implements Node {
+public class SimpleNode implements Node{
 
     private BigInteger id;
     private LinkedList<Edge> edges;
@@ -48,9 +48,11 @@ public class SimpleNode implements Node {
         return this.getId().equals(o.getId());
     }
 
-    public int compareTo(Node o) {
+    public int compareTo(Object o) {
         Objects.requireNonNull(o);
+        if(o instanceof Node){
         return this.getId().compareTo(o.getId());
+        }
+        return 0;
     }
-
 }
