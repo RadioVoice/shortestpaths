@@ -34,8 +34,19 @@ public class SimpleNode implements Node {
 
     public Node getPrevious() { return previous; }
 
-    public boolean equals() { }
+    private boolean add(Edge outgoing) {
+        return edges.add(outgoing);
+    }
 
-    public int compareTo() {}
+    private boolean remove(Edge outgoing) {
+        return edges.remove(outgoing);
+    }
+    public boolean equals(Node o) {
+        return this.getId().equals(o.getId());
+    }
+
+    public int compareTo(Node o) {
+        return this.getId().compareTo(o.getId());
+    }
 
 }

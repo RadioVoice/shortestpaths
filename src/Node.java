@@ -3,10 +3,10 @@ import java.util.LinkedList;
 
 public interface Node {
 
-    abstract BigInteger getID();
-    abstract LinkedList<Edge> getEdges();
-    abstract BigInteger getCost();
-    abstract boolean addEdge();
-    abstract boolean removeEdge();
+    BigInteger getId();
+    LinkedList<Edge> getEdges();
+    BigInteger getCost();
+    boolean add();
+    boolean remove();
 
 }
