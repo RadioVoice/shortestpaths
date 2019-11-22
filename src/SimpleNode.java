@@ -51,7 +51,7 @@ public class SimpleNode implements Node{
     public int compareTo(Object o) {
         Objects.requireNonNull(o);
         if(o instanceof Node){
-        return this.getId().compareTo(o.getId());
+        return this.getId().compareTo(((Node) o).getId());
         }
         return 0;
     }
