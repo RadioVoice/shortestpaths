@@ -47,7 +47,7 @@ public class RouteNode implements Comparable<RouteNode>{
         return (comparedByArrival!=0) ? comparedByArrival : node.compareTo(o.getNode());
     }
 
-    public HashSet getConnections(){
+    public HashSet<Edge> getConnections(){
         return getNode().getEdges();
     }
 

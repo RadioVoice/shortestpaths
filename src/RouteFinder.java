@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -35,11 +36,14 @@ public final class RouteFinder {
         return null;
     }
 
-    void findNextNodes(RouteState routeState, RouteNode currentNode) {
-        for (Edge connection : currentNode.getConnections()) {
-            RouteTime flightArrivalTime = new RouteTime(flight.arrivalTime());
-            if (flightArrivalTime.compareTo(routeState.airportNode(flight.destination()).getArrivalTime()) < 0) {
-                RouteNode newNode = RouteNode.of(flight, currentNode);
+    private void findNextNodes(RouteState routeState, RouteNode currentNode) {
+        HashSet<Edge> connectionSet = currentNode.getConnections();
+        for (Edge connection : connectionSet) {
+            BigInteger costToNextNode = currentNode.getCostToNode().add(connection.getCost());
+            RouteNode nextRouteNode = routeState.associatedRouteNode(connection.getDest());
+            Objects.requireNonNull(nextRouteNode, "No associated RouteNode");
+            if(nextRouteNode.getCostToNode() == null || costToNextNode.compareTo(nextRouteNode.getCostToNode()) < 0){
+                RouteNode newNode = RouteNode.of(connection, currentNode);
                 routeState.replaceNode(newNode);
             }
         }
