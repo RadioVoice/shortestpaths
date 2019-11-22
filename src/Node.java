@@ -6,7 +6,7 @@ public interface Node {
     BigInteger getId();
     LinkedList<Edge> getEdges();
     BigInteger getCost();
-    boolean add();
-    boolean remove();
+    boolean add(Edge outgoing);
+    boolean remove(Edge outgoing);
 
 }
