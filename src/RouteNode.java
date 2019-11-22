@@ -16,7 +16,6 @@ public class RouteNode implements Comparable<RouteNode>{
     public static RouteNode of(Node node, BigInteger costToNode, RouteNode previous){
         Objects.requireNonNull(node);
         Objects.requireNonNull(costToNode);
-        Objects.requireNonNull(previous);
         return new RouteNode(node, costToNode, previous);
     }
 
