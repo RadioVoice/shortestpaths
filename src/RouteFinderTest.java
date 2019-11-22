@@ -71,9 +71,9 @@ public class RouteFinderTest {
         node1.addEdge(edge2);
         node2.addEdge(edge3);
         node3.addEdge(edge4);
-        node3.addEdge(edge9);
+        node3.addEdge(edge8);
         node4.addEdge(edge6);
-        node5.addEdge(edge6);
+        node5.addEdge(edge5);
         node6.addEdge(edge7);
         node7.addEdge(edge8);
 
