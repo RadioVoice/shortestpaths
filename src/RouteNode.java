@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.Objects;
 
 public class RouteNode implements Comparable<RouteNode>{
@@ -45,6 +46,11 @@ public class RouteNode implements Comparable<RouteNode>{
         int comparedByArrival = this.costToNode.compareTo(o.costToNode);
         return (comparedByArrival!=0) ? comparedByArrival : node.compareTo(o.getNode());
     }
+
+    public HashSet getConnections(){
+        return getNode().getEdges();
+    }
+
 
     public Node getNode() {
         return node;
