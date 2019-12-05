@@ -42,8 +42,14 @@ public class RouteNode implements Comparable<RouteNode>{
     @Override  //by arrival times then by airport
     public int compareTo(RouteNode o) {
         Objects.requireNonNull(o, "input is null");
-        int comparedByCostToNode = this.costToNode.compareTo(o.costToNode);
-        return (comparedByCostToNode!=0) ? comparedByCostToNode : node.compareTo(o.getNode());
+        boolean thisUnknown = costToNode == null;
+        boolean oUnknown = o.costToNode == null;
+        if(thisUnknown || oUnknown)
+            return Boolean.compare(thisUnknown, oUnknown);
+        else{
+            int comparedByCostToNode = this.costToNode.compareTo(o.costToNode);
+            return (comparedByCostToNode!=0) ? comparedByCostToNode : node.compareTo(o.getNode());
+        }
     }
 
     public HashSet<Edge> getConnections(){
