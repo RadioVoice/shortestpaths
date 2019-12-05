@@ -47,6 +47,7 @@ final class RouteState {
         return unreached.isEmpty();
     }
 
+    //-----Check for unknown times!!!!-----
     final RouteNode closestUnreached() {
         if (allReached()) {
             throw new NoSuchElementException("all nodes have been reached");
