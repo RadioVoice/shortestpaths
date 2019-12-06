@@ -40,7 +40,7 @@ public class RouteNode implements Comparable<RouteNode>{
         Objects.requireNonNull(edge);
         Objects.requireNonNull(previous);
         Objects.requireNonNull(previous.getCostToNode());
-        return new RouteNode(edge.getDest(), previous.getCostToNode().add(edge.getCost()), previous);
+        return new RouteNode(edge.getDest(), previous.costAfterNode().add(edge.getCost()), previous);
     }
 
     /**
@@ -69,7 +69,7 @@ public class RouteNode implements Comparable<RouteNode>{
         return costToNode.add(node.getCost());
     }
 
-    @Override  //by arrival times then by airport
+    @Override  //by cost to node, or by ID if equal
     public int compareTo(RouteNode o) {
         Objects.requireNonNull(o, "input is null");
         boolean thisUnknown = !isCostToNodeKnown();
