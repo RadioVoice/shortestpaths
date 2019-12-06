@@ -55,7 +55,7 @@ public class RouteFinderTest {
         node6 = SimpleNode.of(new BigInteger("6"), new HashSet<Edge>(), new BigInteger("0"));
         node7 = SimpleNode.of(new BigInteger("7"), new HashSet<Edge>(), new BigInteger("3"));
         node8 = SimpleNode.of(new BigInteger("8"), new HashSet<Edge>(), new BigInteger("0"));
-        node9 = SimpleNode.of(new BigInteger("8"), new HashSet<Edge>(), new BigInteger("10"));
+        node9 = SimpleNode.of(new BigInteger("9"), new HashSet<Edge>(), new BigInteger("10"));
 
         edge1 = SimpleEdge.of(new BigInteger("1"), new BigInteger("5"), node1, node2);
         edge2 = SimpleEdge.of(new BigInteger("2"), new BigInteger("10"), node1, node3);
@@ -71,7 +71,7 @@ public class RouteFinderTest {
         node1.addEdge(edge2);
         node2.addEdge(edge3);
         node3.addEdge(edge4);
-        node3.addEdge(edge8);
+        node3.addEdge(edge9);
         node4.addEdge(edge6);
         node5.addEdge(edge5);
         node6.addEdge(edge7);

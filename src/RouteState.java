@@ -27,7 +27,7 @@ final class RouteState {
         return new RouteState(nodes, origin, startingCost);
     }
 
-    //adds or replaces the node in unreached; just replaces in airportNodes
+    //adds or replaces the node in unreached; just replaces in nodeMap
     final void replaceNode(RouteNode routeNode){
         Objects.requireNonNull(routeNode, "route node is null");
 

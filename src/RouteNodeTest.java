@@ -46,4 +46,30 @@ public class RouteNodeTest {
         RouteNode routeNode2 = RouteNode.of(node2, new BigInteger("2000"), null);
         assertEquals(-1, routeNode.compareTo(routeNode2));
     }
+    //Code Coverage and Branch Coverage
+    @Test
+    public void routeNodeCompareToUnknownTest() {
+        SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"));
+        SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"));
+        RouteNode routeNode = RouteNode.of(node, new BigInteger("1000"), null);
+        RouteNode routeNode2 = RouteNode.of(node2);
+        assertEquals(-1, routeNode.compareTo(routeNode2));
+    }
+    //Code Coverage and Branch Coverage
+    @Test
+    public void unknownRouteNodeCompareToTest() {
+        SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"));
+        SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"));
+        RouteNode routeNode = RouteNode.of(node, new BigInteger("1000"), null);
+        RouteNode routeNode2 = RouteNode.of(node2);
+        assertEquals(1, routeNode2.compareTo(routeNode));
+    }
+    @Test
+    public void routeNodeCompareToEqualTest() {
+        SimpleNode node = SimpleNode.of(new BigInteger("1"), new HashSet<Edge>(), new BigInteger("1000"));
+        SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"));
+        RouteNode routeNode = RouteNode.of(node, new BigInteger("1000"), null);
+        RouteNode routeNode2 = RouteNode.of(node2, new BigInteger("1000"), null);
+        assertEquals(1, routeNode.compareTo(routeNode2));
+    }
 }
