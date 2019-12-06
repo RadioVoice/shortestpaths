@@ -26,7 +26,7 @@ public class SimpleEdge implements Edge{
      * @param cost Represents the cost of the edge
      * @param origin Represents the starting node
      * @param dest Represents the ending node
-     * @return Returns 
+     * @return Returns an instance of SimpleEdge
      */
     public static SimpleEdge of(BigInteger id, BigInteger cost, Node origin, Node dest){
         Objects.requireNonNull(id);
@@ -39,18 +39,34 @@ public class SimpleEdge implements Edge{
         return new SimpleEdge(id, cost, origin, dest);
     }
 
+    /**
+     *
+     * @return Returns the edge ID
+     */
     public BigInteger getID() {
         return id;
     }
 
+    /**
+     *
+     * @return Returns the starting node
+     */
     public Node getOrigin() {
         return origin;
     }
 
+    /**
+     *
+     * @return Returns the ending node
+     */
     public Node getDest() {
         return dest;
     }
 
+    /**
+     *
+     * @return Returns the cost of the edge
+     */
     public BigInteger getCost() {
         return cost;
     }
