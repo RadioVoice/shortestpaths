@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="LAPTOP-1S7GE2O6" name="RouteFinderTest" skipped="0" tests="4" time="0.242" timestamp="2019-12-06T19:02:38">
+  <properties>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+    <property name="ant.library.dir" value="/usr/local/ant/lib" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.specification.version" value="12" />
+    <property name="ant.project.name" value="alert" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="java.class.path" value="/usr/local/ant/lib/hamcrest-core-1.3.jar:/mnt/c/GitHub/shortestpaths/build:/usr/local/ant/lib/junit-4.12.jar:/usr/local/apache-ant-1.10.7/lib/ant-launcher.jar:/usr/local/ant/lib/ant.jar:/usr/local/ant/lib/ant-junit.jar:/usr/local/ant/lib/ant-junit4.jar" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="main-class" value="alert.ChannelDriver" />
+    <property name="java.vendor.url" value="https://java.oracle.com/" />
+    <property name="ant.file.type.alert" value="file" />
+    <property name="os.name" value="Linux" />
+    <property name="java.vm.specification.version" value="12" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-12-oracle/lib" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner RouteFinderTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/mnt/c/GitHub/shortestpaths/report/junit/TEST-RouteFinderTest.xml crashfile=/mnt/c/GitHub/shortestpaths/junitvmwatcher17555212757303721884.properties propsfile=/mnt/c/GitHub/shortestpaths/junit14422771695682090814.properties" />
+    <property name="jdk.debug" value="release" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="user.home" value="/root" />
+    <property name="user.language" value="en" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="_jacoco.agentFile" value="/tmp/jacocoagent2845771252777904981.jar" />
+    <property name="java.version.date" value="2019-07-16" />
+    <property name="java.home" value="/usr/lib/jvm/java-12-oracle" />
+    <property name="basedir" value="/mnt/c/GitHub/shortestpaths" />
+    <property name="file.separator" value="/" />
+    <property name="jacoco.file" value="report/jacoco/jacoco.exec" />
+    <property name="java.vm.compressedOopsMode" value="Zero based" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="ant.java.version" value="12" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="doc.dir" value="doc" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="java.runtime.version" value="12.0.2+10" />
+    <property name="user.name" value="root" />
+    <property name="ant.file" value="/mnt/c/GitHub/shortestpaths/build.xml" />
+    <property name="path.separator" value=":" />
+    <property name="ant.file.alert" value="/mnt/c/GitHub/shortestpaths/build.xml" />
+    <property name="os.version" value="4.4.0-17763-Microsoft" />
+    <property name="jacoco.dir" value="report/jacoco" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="ant.project.invoked-targets" value="report" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="report.dir" value="report" />
+    <property name="junit.dir" value="report/junit" />
+    <property name="ant.core.lib" value="/usr/local/ant/lib/ant.jar" />
+    <property name="build.dir" value="build" />
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.version" value="12.0.2" />
+    <property name="user.dir" value="/mnt/c/GitHub/shortestpaths" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.home" value="/usr/local/ant" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.7 compiled on September 1 2019" />
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="java.vm.version" value="12.0.2+10" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="java.class.version" value="56.0" />
+    <property name="src.dir" value="src" />
+  </properties>
+  <testcase classname="RouteFinderTest" name="routeFinderTestNull" time="0.004" />
+  <testcase classname="RouteFinderTest" name="routeFinderRoute" time="0.017" />
+  <testcase classname="RouteFinderTest" name="routeFinderTest" time="0.0" />
+  <testcase classname="RouteFinderTest" name="routeFinderRouteNotFound" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

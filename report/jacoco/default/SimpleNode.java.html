@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleNode.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alert</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">SimpleNode.java</span></div><h1>SimpleNode.java</h1><pre class="source lang-java linenums">import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Objects;
+
+/**
+ * Class that allows for implementation of a node, so that Dijkstra's Algorithm can be properly tested
+ * @author Jack Bilotti
+ */
+public class SimpleNode implements Node{
+
+    private BigInteger id;
+    private HashSet&lt;Edge&gt; edges;
+    private BigInteger cost;
+
+<span class="fc" id="L15">    private SimpleNode(BigInteger id, HashSet&lt;Edge&gt; edges, BigInteger cost) {</span>
+<span class="fc" id="L16">        this.id = id;</span>
+<span class="fc" id="L17">        this.edges = edges;</span>
+<span class="fc" id="L18">        this.cost = cost;</span>
+<span class="fc" id="L19">    }</span>
+
+    /**Builder for the instantiation of a SimpleNode
+     *
+     * @param id Represents the id of the node
+     * @param edges Represents the collections of edges contained in a node
+     * @param cost Represents the cost of the node
+     * @return Returns an instance of SimpleNode
+     */
+    public static SimpleNode of(BigInteger id, HashSet&lt;Edge&gt; edges, BigInteger cost) {
+<span class="fc" id="L29">        Objects.requireNonNull(id);</span>
+<span class="fc" id="L30">        Objects.requireNonNull(edges);</span>
+<span class="fc" id="L31">        Objects.requireNonNull(cost);</span>
+
+<span class="fc" id="L33">        return new SimpleNode(id, edges, cost);</span>
+    }
+
+    /**
+     *
+     * @return Returns the node ID
+     */
+<span class="fc" id="L40">    public BigInteger getId() { return id; }</span>
+
+    /**
+     *
+     * @return Returns the collection of node edges
+     */
+<span class="fc" id="L46">    public HashSet&lt;Edge&gt; getEdges() { return edges; }</span>
+
+    /**
+     *
+     * @return Returns the cost of the node
+     */
+<span class="fc" id="L52">    public BigInteger getCost() { return cost; }</span>
+
+    /**
+     *
+     * @param outgoing The edge being added to the Nodes collection of edges
+     * @return Returns the boolean value of the success of the addition of an edge to the node's collection
+     */
+    public boolean addEdge(Edge outgoing) {
+<span class="fc" id="L60">        Objects.requireNonNull(outgoing);</span>
+<span class="fc" id="L61">        return edges.add(outgoing);</span>
+    }
+
+    /**
+     *
+     * @param outgoing The edge to be removed from the Node's collection
+     * @return Returns the boolean value of the success of the removal of an edge from the node's collection
+     */
+    public boolean removeEdge(Edge outgoing) {
+<span class="fc" id="L70">        Objects.requireNonNull(outgoing);</span>
+<span class="fc" id="L71">        return edges.remove(outgoing);</span>
+    }
+
+    /**
+     *
+     * @param o The Node to compared to
+     * @return Returns the truth value of the two nodes equivalency
+     */
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (o instanceof Node){</span>
+<span class="fc" id="L81">            return this.getId().equals(((Node) o).getId());</span>
+        }
+<span class="fc" id="L83">        return false;</span>
+    }
+
+    /**
+     *
+     * @param o The object being compared to
+     * @return Returns the value of the comparison of the two node's IDs
+     */
+    public int compareTo(Object o) {
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if(o instanceof Node){</span>
+<span class="fc" id="L93">            return this.getId().compareTo(((Node) o).getId());</span>
+        }
+<span class="fc" id="L95">        throw new IllegalArgumentException(&quot;Object is not a valid Node&quot;);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

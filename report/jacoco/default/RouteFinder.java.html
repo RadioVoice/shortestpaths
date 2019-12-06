@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteFinder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alert</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">RouteFinder.java</span></div><h1>RouteFinder.java</h1><pre class="source lang-java linenums">import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+/**
+ * RouteFinder takes a set of vertices, and uses the associated edges with those vertices
+ * to run Dijistra's Algorithm, giving the shortest path from one place to another
+ * @author Jack Bilotti
+ */
+public class RouteFinder {
+    private final Set&lt;Node&gt; nodes;
+
+<span class="fc" id="L14">    private RouteFinder(Set&lt;Node&gt; nodes) {</span>
+<span class="fc" id="L15">        this.nodes = nodes;</span>
+<span class="fc" id="L16">    }</span>
+
+    /**
+     * Builder for the instantiation of a RouteFinder
+     * @param nodes Set of all nodes in the graph
+     * @return Returns an instance of RouteFinder
+     */
+    public static RouteFinder of(Set&lt;Node&gt; nodes) {
+<span class="fc" id="L24">        Objects.requireNonNull(nodes, &quot;set is null&quot;);</span>
+<span class="fc" id="L25">        return new RouteFinder(nodes);</span>
+    }
+
+    /**
+     * Dijkstra's Algorithm
+     * @param origin represents the beginning of Dijkstra's algorithm
+     * @param destination represents the final place in the shortest path
+     * @param startingCost represents the starting cost of the path
+     * @return Returns RouteNode containing shortest path
+     */
+    public final RouteNode route(Node origin, Node destination, BigInteger startingCost) {
+<span class="fc" id="L36">        Objects.requireNonNull(origin, &quot;origin is null&quot;);</span>
+<span class="fc" id="L37">        Objects.requireNonNull(destination, &quot;destination is null&quot;);</span>
+<span class="fc" id="L38">        Objects.requireNonNull(startingCost, &quot;starting cost is null&quot;);</span>
+<span class="fc" id="L39">        RouteState routeState = RouteState.of(nodes, origin, startingCost);</span>
+
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        while (!routeState.allReached()) {</span>
+<span class="fc" id="L42">            RouteNode currentNode = routeState.closestUnreached();</span>
+<span class="fc" id="L43">            routeState.reached(currentNode);</span>
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            if (currentNode.getNode().equals(destination)) {</span>
+<span class="fc" id="L46">                return currentNode;</span>
+            }
+
+<span class="fc" id="L49">            findNextNodes(routeState, currentNode);</span>
+
+<span class="fc" id="L51">        }</span>
+<span class="fc" id="L52">        return null;</span>
+    }
+
+    /**
+     *
+     * @param routeState represents the current RouteState of the graph being searched
+     * @param currentNode represents the currentNode of the graph the route algorithm is on
+     */
+    private void findNextNodes(RouteState routeState, RouteNode currentNode) {
+<span class="fc" id="L61">        HashSet&lt;Edge&gt; connectionSet = currentNode.getConnections();</span>
+
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        for (Edge connection : connectionSet) {</span>
+<span class="fc" id="L64">            BigInteger costToNextNode = currentNode.costAfterNode().add(connection.getCost());</span>
+<span class="fc" id="L65">            RouteNode nextRouteNode = routeState.associatedRouteNode(connection.getDest());</span>
+<span class="fc" id="L66">            Objects.requireNonNull(nextRouteNode, &quot;No associated RouteNode&quot;);</span>
+
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">            if(!nextRouteNode.isCostToNodeKnown() || costToNextNode.compareTo(nextRouteNode.costAfterNode()) &lt; 0){</span>
+<span class="fc" id="L69">                RouteNode newNode = RouteNode.of(connection, currentNode);</span>
+<span class="fc" id="L70">                routeState.replaceNode(newNode);</span>
+            }
+<span class="fc" id="L72">        }</span>
+<span class="fc" id="L73">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

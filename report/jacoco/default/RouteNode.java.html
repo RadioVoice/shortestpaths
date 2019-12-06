@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteNode.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alert</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">RouteNode.java</span></div><h1>RouteNode.java</h1><pre class="source lang-java linenums">import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Objects;
+
+/**
+ * Class representing a node with a cost to be reached attached to it.
+ * @author Jack Bilotti
+ */
+public class RouteNode implements Comparable&lt;RouteNode&gt;{
+    private final Node node;
+    private final BigInteger costToNode;
+    private final RouteNode previous;
+
+<span class="fc" id="L14">    private RouteNode(Node node, BigInteger costToNode, RouteNode previous){</span>
+<span class="fc" id="L15">        this.node = node;</span>
+<span class="fc" id="L16">        this.costToNode = costToNode;</span>
+<span class="fc" id="L17">        this.previous = previous;</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * Builder for the instantiation of a RouteNode
+     * @param node represents the node of the RouteNode
+     * @param costToNode represents the cost to be reached by the node
+     * @param previous represents the previous node in the graph
+     * @return Returns an instance of RouteNode
+     */
+    public static RouteNode of(Node node, BigInteger costToNode, RouteNode previous){
+<span class="fc" id="L28">        Objects.requireNonNull(node);</span>
+<span class="fc" id="L29">        Objects.requireNonNull(costToNode);</span>
+<span class="fc" id="L30">        return new RouteNode(node, costToNode, previous);</span>
+    }
+
+    /**
+     * Builder for the instantiation of a RouteNode
+     * @param edge represents the edge connecting the previous and current node
+     * @param previous represents the previous node in the graph
+     * @return Returns an instance of RouteNode
+     */
+    public static RouteNode of(Edge edge, RouteNode previous){
+<span class="fc" id="L40">        Objects.requireNonNull(edge);</span>
+<span class="fc" id="L41">        Objects.requireNonNull(previous);</span>
+<span class="fc" id="L42">        Objects.requireNonNull(previous.getCostToNode());</span>
+<span class="fc" id="L43">        return new RouteNode(edge.getDest(), previous.costAfterNode().add(edge.getCost()), previous);</span>
+    }
+
+    /**
+     * Builder for the instantiation of a RouteNode
+     * @param node represents the main node of the routeNode
+     * @return Returns an instance of RouteNode
+     */
+    public static RouteNode of(Node node){
+<span class="fc" id="L52">        Objects.requireNonNull(node);</span>
+<span class="fc" id="L53">        return new RouteNode(node, null, null);</span>
+    }
+
+    /**
+     *
+     * @return Returns a truth value as to whether the costToNode value is null or not
+     */
+    public final boolean isCostToNodeKnown(){
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        return (costToNode != null);</span>
+    }
+
+    /**
+     *
+     * @return Returns a value representing
+     */
+    public final BigInteger costAfterNode(){
+<span class="fc" id="L69">        return costToNode.add(node.getCost());</span>
+    }
+
+    /**
+     *
+     * @param o represents the RouteNode to be compared to
+     * @return Returns the value of comparing the RouteNode to the param. First compares value of the costToNode
+     * then compares the nodes themselves
+     */
+    public int compareTo(RouteNode o) {
+<span class="fc" id="L79">        Objects.requireNonNull(o, &quot;input is null&quot;);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        boolean thisUnknown = !isCostToNodeKnown();</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        boolean oUnknown = !o.isCostToNodeKnown();</span>
+<span class="fc bfc" id="L82" title="All 4 branches covered.">        if(thisUnknown || oUnknown)</span>
+<span class="fc" id="L83">            return Boolean.compare(thisUnknown, oUnknown);</span>
+        else{
+<span class="fc" id="L85">            int comparedByCostToNode = costToNode.compareTo(o.costToNode);</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">            return (comparedByCostToNode!=0) ? comparedByCostToNode : node.compareTo(o.getNode());</span>
+        }
+    }
+
+    public HashSet&lt;Edge&gt; getConnections(){
+<span class="fc" id="L91">        return getNode().getEdges();</span>
+    }
+
+
+    public Node getNode() {
+<span class="fc" id="L96">        return node;</span>
+    }
+
+    public BigInteger getCostToNode() {
+<span class="fc" id="L100">        return costToNode;</span>
+    }
+
+    public RouteNode getPrevious() {
+<span class="nc" id="L104">        return previous;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

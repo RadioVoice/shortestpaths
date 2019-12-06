@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alert</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">RouteState.java</span></div><h1>RouteState.java</h1><pre class="source lang-java linenums">import java.math.BigInteger;
+import java.security.InvalidParameterException;
+import java.util.*;
+
+/**
+ * ClassRoute a navigable graph of the nodes
+ * @author Jack Bilotti
+ */
+<span class="pc bpc" id="L9" title="1 of 2 branches missed.">final class RouteState {</span>
+    private Map&lt;Node, RouteNode&gt; nodeMap ;
+    private final NavigableSet&lt;RouteNode&gt; unreached;
+
+<span class="fc" id="L13">    private RouteState(Set&lt;Node&gt; nodes, Node origin, BigInteger startingCost){</span>
+
+<span class="fc" id="L15">        nodeMap = new HashMap&lt;Node, RouteNode&gt;();</span>
+<span class="fc" id="L16">        unreached = new TreeSet&lt;RouteNode&gt;();</span>
+
+<span class="fc" id="L18">        RouteNode startingNode = RouteNode.of(origin, startingCost, null);</span>
+
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for(Node n : nodes) {</span>
+<span class="fc" id="L21">            RouteNode temp = RouteNode.of(n);</span>
+<span class="fc" id="L22">            nodeMap.put(n, temp);</span>
+<span class="fc" id="L23">        }</span>
+
+<span class="fc" id="L25">        this.replaceNode(startingNode);</span>
+<span class="fc" id="L26">    }</span>
+
+    /** Builder for the instantiation of a RouteState
+     *
+     * @param nodes represents the set of nodes in the graph
+     * @param origin represents the starting point, or origin of the graph
+     * @param startingCost represents the starting cost of the graph state
+     * @return Returns an instance of RouteState
+     */
+    static RouteState of(Set&lt;Node&gt; nodes, Node origin, BigInteger startingCost){
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(nodes.isEmpty()){</span>
+<span class="fc" id="L37">            throw new InvalidParameterException(&quot;Nodes should not be empty&quot;);</span>
+        }
+<span class="fc" id="L39">        return new RouteState(nodes, origin, startingCost);</span>
+    }
+
+    /** Adds or replaces the node in unreached; then replaces the node in nodeMap
+     *
+     * @param routeNode represents the RouteNode being replaced
+     */
+    final void replaceNode(RouteNode routeNode){
+<span class="fc" id="L47">        Objects.requireNonNull(routeNode, &quot;route node is null&quot;);</span>
+
+<span class="fc" id="L49">        Node node = routeNode.getNode();</span>
+<span class="pc bpc" id="L50" title="2 of 4 branches missed.">        assert (node != null);</span>
+
+<span class="fc" id="L52">        RouteNode oldNode = nodeMap.get(node);</span>
+<span class="pc bpc" id="L53" title="2 of 4 branches missed.">        assert (oldNode != null);</span>
+
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if(unreached.contains(oldNode))</span>
+<span class="fc" id="L56">            unreached.remove(oldNode);</span>
+<span class="fc" id="L57">        unreached.add(routeNode);</span>
+<span class="fc" id="L58">        nodeMap.replace(node, routeNode);</span>
+<span class="fc" id="L59">    }</span>
+
+    /**Checks to see if all nodes in the graph have been reached
+     *
+     * @return Returns the truth value of the unreached set and whether or not it is empty
+     */
+    final boolean allReached(){
+<span class="fc" id="L66">        return unreached.isEmpty();</span>
+    }
+
+    /**Finds the closest node that hasn't been reached yet
+     *
+     * @return Returns the first node in the unreached set
+     */
+    final RouteNode closestUnreached() {
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (allReached()) {</span>
+<span class="fc" id="L75">            throw new NoSuchElementException(&quot;all nodes have been reached&quot;);</span>
+        }
+<span class="fc" id="L77">        return unreached.first();</span>
+    }
+
+    /**Checks to see if given node exists as a key in the RouteState nodeMap
+     *
+     * @param node contains the node being checked
+     * @return Returns the RouteNode value linked to the node key. Otherwise returns null
+     */
+    final RouteNode associatedRouteNode(Node node){
+<span class="fc" id="L86">        Objects.requireNonNull(node, &quot;node is null&quot;);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if(nodeMap.containsKey(node)){</span>
+<span class="fc" id="L88">            return nodeMap.get(node);</span>
+        }
+<span class="fc" id="L90">        return null;</span>
+    }
+
+    /**Called when a node in the RouteState graph has been reached.
+     *
+     * @param routeNode represents the routeNode that is considered reached and is to be removed from the 'unreached' set
+     */
+    final void reached(RouteNode routeNode){
+<span class="fc" id="L98">        Objects.requireNonNull(routeNode, &quot;route node is null&quot;);</span>
+<span class="fc" id="L99">        unreached.remove(routeNode);</span>
+<span class="fc" id="L100">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
