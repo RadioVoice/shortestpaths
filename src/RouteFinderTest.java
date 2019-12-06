@@ -103,7 +103,6 @@ public class RouteFinderTest {
         HashSet<Node> nodes = new HashSet<Node>(Arrays.asList(node1,node2,node3,node4,node5,node6,node7,node8,node9));
         RouteFinder routeFinder = RouteFinder.of(nodes);
         RouteNode fin = routeFinder.route(node1, node8, new BigInteger("0"));
-        assertEquals(fin.getCostToNode(), new BigInteger("22"));
-
+        assertEquals(new BigInteger("22"), fin.getCostToNode());
     }
 }
