@@ -70,6 +70,6 @@ public class RouteNodeTest {
         SimpleNode node2 = SimpleNode.of(new BigInteger("2"), new HashSet<Edge>(), new BigInteger("1000"));
         RouteNode routeNode = RouteNode.of(node, new BigInteger("1000"), null);
         RouteNode routeNode2 = RouteNode.of(node2, new BigInteger("1000"), null);
-        assertEquals(1, routeNode.compareTo(routeNode2));
+        assertEquals(-1, routeNode.compareTo(routeNode2));
     }
 }
