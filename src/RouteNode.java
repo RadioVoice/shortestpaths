@@ -42,12 +42,12 @@ public class RouteNode implements Comparable<RouteNode>{
     @Override  //by arrival times then by airport
     public int compareTo(RouteNode o) {
         Objects.requireNonNull(o, "input is null");
-        boolean thisUnknown = costToNode == null;
-        boolean oUnknown = o.costToNode == null;
+        boolean thisUnknown = !isCostToNodeKnown();
+        boolean oUnknown = !o.isCostToNodeKnown();
         if(thisUnknown || oUnknown)
             return Boolean.compare(thisUnknown, oUnknown);
         else{
-            int comparedByCostToNode = this.costToNode.compareTo(o.costToNode);
+            int comparedByCostToNode = costToNode.compareTo(o.costToNode);
             return (comparedByCostToNode!=0) ? comparedByCostToNode : node.compareTo(o.getNode());
         }
     }
