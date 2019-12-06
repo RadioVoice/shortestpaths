@@ -2,6 +2,10 @@ import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Objects;
 
+/**
+ * Class representing a node with a cost to be reached attached to it
+ * @author Jack Bilotti
+ */
 public class RouteNode implements Comparable<RouteNode>{
     private final Node node;
     private final BigInteger costToNode;
@@ -13,12 +17,25 @@ public class RouteNode implements Comparable<RouteNode>{
         this.previous = previous;
     }
 
+    /**
+     * Builder for the instantiation of a RouteNode
+     * @param node represents the node of the RouteNode
+     * @param costToNode represents the cost to be reached by the node
+     * @param previous represents the previous node in the graph
+     * @return Returns an instance of RouteNode
+     */
     public static RouteNode of(Node node, BigInteger costToNode, RouteNode previous){
         Objects.requireNonNull(node);
         Objects.requireNonNull(costToNode);
         return new RouteNode(node, costToNode, previous);
     }
 
+    /**
+     * Builder for the instantiation of a RouteNode
+     * @param edge represents the edge connecting the previous and current node
+     * @param previous represents the previous node in the graph
+     * @return Returns an instance of RouteNode
+     */
     public static RouteNode of(Edge edge, RouteNode previous){
         Objects.requireNonNull(edge);
         Objects.requireNonNull(previous);
@@ -26,15 +43,28 @@ public class RouteNode implements Comparable<RouteNode>{
         return new RouteNode(edge.getDest(), previous.getCostToNode().add(edge.getCost()), previous);
     }
 
+    /**
+     * Builder for the instantiation of a RouteNode
+     * @param node represents the main node of the routeNode
+     * @return Returns an instance of RouteNode
+     */
     public static RouteNode of(Node node){
         Objects.requireNonNull(node);
         return new RouteNode(node, null, null);
     }
 
+    /**
+     *
+     * @return Returns a truth value as to whether the costToNode value is null or not
+     */
     public final boolean isCostToNodeKnown(){
         return (costToNode != null);
     }
 
+    /**
+     *
+     * @return Returns a value representing
+     */
     public final BigInteger costAfterNode(){
         return costToNode.add(node.getCost());
     }
