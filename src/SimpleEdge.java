@@ -2,6 +2,10 @@ import java.math.BigInteger;
 import java.security.InvalidParameterException;
 import java.util.Objects;
 
+/**
+ * Class that allows the implementation of an Edge, so that Dijkstra's Algorithm can be tested
+ * @author Jack Bilotti
+ */
 public class SimpleEdge implements Edge{
 
     private BigInteger id;
@@ -16,6 +20,14 @@ public class SimpleEdge implements Edge{
         this.dest = dest;
     }
 
+    /**Builder for the instantiation of a SimpleEdge
+     *
+     * @param id Represents the id of the edge
+     * @param cost Represents the cost of the edge
+     * @param origin Represents the starting node
+     * @param dest Represents the ending node
+     * @return Returns 
+     */
     public static SimpleEdge of(BigInteger id, BigInteger cost, Node origin, Node dest){
         Objects.requireNonNull(id);
         Objects.requireNonNull(cost);

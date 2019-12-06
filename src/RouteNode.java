@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Objects;
 
 /**
- * Class representing a node with a cost to be reached attached to it
+ * Class representing a node with a cost to be reached attached to it.
  * @author Jack Bilotti
  */
 public class RouteNode implements Comparable<RouteNode>{
@@ -69,7 +69,13 @@ public class RouteNode implements Comparable<RouteNode>{
         return costToNode.add(node.getCost());
     }
 
-    @Override  //by arrival times then by airport
+    /**
+     *
+     * @param o represents the RouteNode to be compared to
+     * @return Returns the value of comparing the RouteNode to the param. First compares value of the costToNode
+     * then compares the nodes themselves
+     */
+    @Override  //by cost then node
     public int compareTo(RouteNode o) {
         Objects.requireNonNull(o, "input is null");
         boolean thisUnknown = !isCostToNodeKnown();
